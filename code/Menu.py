@@ -7,12 +7,12 @@ from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./assets/MenuBg.png')
+        self.surf = pygame.image.load('./assets/MenuBg.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
         menu_option = 0
-        pygame.mixer.music.load('./assets/Menu.mp3')
+        pygame.mixer.music.load(f'./assets/Menu.mp3')
         pygame.mixer.music.play(-1) # -1 faz a música tocar em loop infinito
 
         while True:
