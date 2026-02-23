@@ -1,12 +1,21 @@
+from code.Const import WIN_WIDTH
 from code.Enemy import Enemy
+from code.EnemyShot import EnemyShot
 from code.Entity import Entity
+from code.PlayerShot import PlayerShot
 
 
 class EntityMediator:
     @staticmethod
     def __verify_collision_window(ent: Entity):  # __ indica que o metodo é privado e só funciona dentro da mesma class
         if isinstance(ent, Enemy):
-            if ent.rect.right < 0: # se passar da tela
+            if ent.rect.right <= 0: # se passar da tela
+                ent.health = 0
+        if isinstance(ent, PlayerShot):
+            if ent.rect.left >= WIN_WIDTH:
+                ent.health = 0
+        if isinstance(ent, EnemyShot):
+            if ent.rect.right <= 0: # right => borda direita
                 ent.health = 0
 
     @staticmethod
